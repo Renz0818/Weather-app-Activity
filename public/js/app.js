@@ -27,45 +27,17 @@ fetch('http://localhost:3000/weather?address=' + location).then ((response) =>{
     })
 })  
 
-//day
-​let​ ​date​ ​=​ ​new​ ​Date​(​)​;
-​let​ ​dayOfWeekNumber​ ​=​ ​date​.​getDay​(​)​;
-​let​ ​nameOfDay​;
- 
-​switch​(​dayOfWeekNumber​)​{
-​    ​case​ ​0​: 
-​        ​nameOfDay​ ​=​ ​'Sunday'
-​        ​break​;
-​    ​case​ ​1​:
-​        ​nameOfDay​ ​=​ ​'Monday'
-​        ​break​;
-​    ​case​ ​2​:
-​        ​nameOfDay​ ​=​ ​'Tuesday'
-​        ​break​;
-​    ​case​ ​3​:
-​        ​nameOfDay​ ​=​ ​'Wednesday'
-​        ​break​;
-​    ​case​ ​4​:
-​        ​nameOfDay​ ​=​ ​'Thursday'
-​        ​break​;
-​    ​case​ ​5​:
-​        ​nameOfDay​ ​=​ ​'Friday'
-​        ​break​;
-​    ​case​ ​6​:
-​        ​nameOfDay​ ​=​ ​'Saturday'
-​        ​break​;
- 
-​}
-​//Display the day 
-​let​ ​weekdayDiv​ ​=​ ​document​.​getElementById​(​'weekday'​)​;
-​weekdayDiv​.​innerHTML​ ​=​ ​`​${​nameOfDay​}​`​;
- 
-​//Display the month
-​const​ ​d​ ​=​ ​new​ ​Date​(​)​;
-​const​ ​months​ ​=​ ​[​"January"​,​ ​"February"​,​ ​"March"​,​ ​"April"​,​ ​"May"​,​ ​"June"​,​ ​"July"​,​ ​"August"​,​ ​"September"​,​ ​"October"​,​ ​"November"​,​ ​"December"​]​;
-​document​.​getElementById​(​"month"​)​.​innerHTML​ ​=​ ​months​[​d​.​getMonth​(​)​]​;
- 
-​//display date
-​const​ ​a​ ​=​ ​new​ ​Date​(​)​;
-​document​.​getElementById​(​"day"​)​.​innerHTML​ ​=​ ​a​.​getDate​(​)​;
-​//display date
+document.getElementById("para1").innerHTML = formatAMPM();
+
+function formatAMPM() {
+    var date = new Date();
+    var hours = date.getHours();
+    var days = date.getDay();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = date + ' ' + hours + ':' + minutes + ' ' + ampm;
+    return strTime;
+}
